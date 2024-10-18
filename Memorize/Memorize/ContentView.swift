@@ -8,13 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    let emojis: [String] = ["👻", "😍", "👻", "😍"]
+    // array is array type
+    // <string> is whats in the array
+        // we can also make our own generic type
+    // the = [] is an array literal
+    // you can also scope the array wherever
+    // let emojis: [String] is the synonymous to Array<String>
     var body: some View {
+        
+        // the way you do the for loop is via a view, you can't do a forloop becuase you cannot mutate the view.
+        
+        // you use the for each view
         HStack{
-            CardView(isFaceUp: true)
-            CardView()
-            CardView()
-            CardView()
+            ForEach(emojis.indices, id: \.self) { index in
+                CardView(content: emojis[index])
+                // range 0->up to and not including 4, 0..<4
+                // viewbuilder that has an argrumnet, tkae the index argument
+                // .indicies gives you the length and thus gives you the range
+            }
+                
+            
         }
+        
         .foregroundColor(.orange)
         .imageScale(.small)
         .padding()
@@ -22,6 +38,8 @@ struct ContentView: View {
 }
 
 struct CardView: View {
+    let content: String
+    // can't be changed
     @State var isFaceUp = false // defualt Vlaue
     // way to declare state in swift
     var body: some View {
@@ -40,7 +58,7 @@ struct CardView: View {
             if isFaceUp {
                 base.fill(.white)
                 base.strokeBorder(lineWidth: 2)
-                Text("👻").font(.largeTitle)
+                Text(content).font(.largeTitle)
             
             } else {
                 RoundedRectangle(cornerRadius: 12)
