@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentViewWithComments: View {
     let emojis: [String] = ["👻", "😍", "👻", "😍", "👻", "😍", "👻", "😍"]
     // array is array type
     // <string> is whats in the array
@@ -86,7 +86,7 @@ struct ContentView: View {
     }
 }
 
-struct CardView: View {
+struct CardViewWithComments: View {
     let content: String
     // can't be changed
     @State var isFaceUp = false // defualt Vlaue
